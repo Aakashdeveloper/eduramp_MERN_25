@@ -1,0 +1,21 @@
+https://code.visualstudio.com/ > Install
+https://nodejs.org/en > Install
+https://cloud.mongodb.com/ > Create Account
+https://www.mongodb.com/products/tools/compass > Install
+https://www.mongodb.com/products/self-managed/community-edition > Install
+
+Async Non Blocking SingleThreaded
+
+
+package.json
+> entry point to the app
+> meta data
+> all the packages you are using
+> command (start,test,build)
+
+// Step to generate package.json
+*NodejS must be there in the laptop
+> go inside the folder using cmd/terminal
+> npm init
+> answer all question
+> type "yes"
