@@ -4,6 +4,10 @@ https://cloud.mongodb.com/ > Create Account
 https://www.mongodb.com/products/tools/compass > Install
 https://www.mongodb.com/products/self-managed/community-edition > Install
 
+vscode-icons
+gitlens
+npm Intellisense
+
 Async Non Blocking SingleThreaded
 
 
@@ -19,3 +23,46 @@ package.json
 > npm init
 > answer all question
 > type "yes"
+
+// Step to install package
+*NodejS must be there in the laptop
+> go inside the folder using cmd/terminal
+> npm i packagename/ npm install packagename
+
+C > create   POST
+R > Read     GET
+U > Update   PUT/PATCH
+D > Delete   DELETE
+
+var a = 10
+var b = "HI My Age is "+a
+"HI My Age is 10"
+
+
+var a = 10
+var b = `HI My Age is ${a}`
+"HI My Age is 10"
+
+Normal
+> Wrt to app
+> Used inside the same app
+> npm i packageName
+
+Dev
+> only used for development purpose
+> npm i packageName --save-dev
+
+
+Global
+> Install in laptop
+> need admin access
+> used before app start
+#win
+* open cmd as admin
+> npm i -g packagename
+
+#mac/linux
+> open terminal
+> sudo npm i -g packagename
+
+> npm i -g nodemon
