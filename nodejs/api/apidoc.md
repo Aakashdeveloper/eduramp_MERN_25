@@ -1,0 +1,5 @@
+# Page1 (Home Page)
+* List of All State (GET)
+* List of all Restaurants (GET)
+* Restaurants WRT State (GET)
+* List of All Meal Type (GET)

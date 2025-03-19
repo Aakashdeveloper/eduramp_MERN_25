@@ -66,3 +66,101 @@ Global
 > sudo npm i -g packagename
 
 > npm i -g nodemon
+
+SQL         Mongodb
+Database    Database
+Table       Collections
+Row         Document
+Select      Find
+Insert      Insert
+Delete      Remove
+Update      update/upsert
+
+json
+> Javascript Object Notation
+[
+    {
+        "name":"Test1",
+        "city":"Amsterdam"
+    },
+    {
+        "name":"Test2",
+        "city":"London"
+    }
+]
+
+
+SQl
+RollNo | Hindi | English | Computer
+  1    |  80   |         |
+  2    |       |  75     |
+  3    |  90   |         |    80
+
+Mongodb
+[
+    {
+        RollNo:1,
+        Hindi:80,
+    },
+    {
+        RollNo:2,
+        English:75
+    },
+    {
+        RollNo:3,
+        Hindi:90,
+        Computer:80
+    }
+]
+
+C:\ProgrammFile
+make Folder By Name of  data
+insidr "data" folder make new folder db
+C:\ProgrammFile\data\db
+
+Server (27017)
+
+* open cmd
+> C:\ProgrammFile\mongodb\7\bin
+> mongod
+> do not close this cmd till you are using mongo
+
+Clinet
+> C:\ProgrammFile\mongodb\7\bin
+> mongosh
+
+mongodb://localhost:27017
+
+> show dbs
+> use dbname
+> show collections
+
+* Get all records
+db.users.find()
+> db.collectionName.find()
+
+* to create new db
+> use dbname
+
+* to Insert
+> db.user.insertOne({"name":"test"})
+
+_id
+> primary key
+> unique 
+12 byte in size
+4 bytes > timeStamp
+5 bytes > Random Number
+3 bytes > counter
+
+
+db.location.find({state_id:1})
+
+# projection
+db.location.find({condition},{projection})
+db.location.find({},{projection})
+
+db.location.find({state_id:1},{state_id:1,location_name:1,_id:0,code:1})
+
+
+mongodb+srv://admin:<db_password>@cluster0.f8vmc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
