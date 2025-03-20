@@ -1,5 +1,5 @@
-const MongoClient = require('mongodb').MongoClient;
-const dotenv = require('dotenv');
+import {MongoClient} from 'mongodb';
+import dotenv from 'dotenv';
 dotenv.config()
 const mongoUrl = process.env.MongoUrl
 let db;
@@ -21,7 +21,7 @@ async function getData(colName,query){
     return output
 }
 
-module.exports= {
+export {
     dbConnect,
     getData
 }

@@ -1,16 +1,9 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import {ObjectId} from 'mongodb';
-import cors from 'cors'
+const express = require('express');
+const dotenv = require('dotenv');
 const app = express();
 dotenv.config()
 const port = process.env.PORT || 8900
-import {dbConnect,getData} from './controller/dbController';
-
-//app.use(bodyParser.urlencoded({extended:true}))
-//app.use(bodyPArser.json())
-app.use(express.json())
-app.use(cors())
+let {dbConnect,getData} = require('./controller/dbController');
 
 const VALID_USERNAME = process.env.BASIC_AUTH_USER
 const VALID_PASSWORD = process.env.BASIC_AUTH_PASSWORD
@@ -89,37 +82,6 @@ app.get('/filters/:mealId',async(req,res) => {
     }
     let output = await getData(collection,query)
     res.status(200).send(output)
-})
-
-
-// details of restaurants
-app.get('/details/:id',async(req,res) => {
-    let query = {};
-    let restId = req.params.id;
-    const validObjId = (id) => {
-        const idPattern = /^[0-9A-Fa-f]{24}$/
-        return idPattern.test(id)
-    }
-    if(validObjId(restId)){
-        query = {
-            "_id":new ObjectId(restId)
-        }
-    }else{
-        res.send("Invalid Object Id")
-    }
-    // query = {
-    //     "restaurant_id":Number(restId)
-    // }
-    let collection = 'restaurants';
-    let output = await getData(collection,query)
-    res.status(200).send(output)
-})
-
-//placeOrder
-app.post('/placeOrder',async(req,res) => {
-    let data = req.body;
-    console.log(data)
-    res.send('ok')
 })
 
 
