@@ -21,7 +21,40 @@ async function getData(colName,query){
     return output
 }
 
+async function postData(colName,data){
+    let output;
+    try{
+        output = await db.collection(colName).insertOne(data)
+    }catch(err){
+        output={"Error":`Error in POST  Request`}
+    }
+    return output
+}
+
+async function updateData(colName,condition,data){
+    let output;
+    try{
+        output = await db.collection(colName).updateOne(condition,data)
+    }catch(err){
+        output={"Error":`Error in PUT  Request`}
+    }
+    return output
+}
+
+async function deleteData(colName,condition){
+    let output;
+    try{
+        output = await db.collection(colName).deleteOne(condition)
+    }catch(err){
+        output={"Error":`Error in Delete  Request`}
+    }
+    return output
+}
+
 export {
     dbConnect,
-    getData
+    getData,
+    postData,
+    updateData,
+    deleteData
 }

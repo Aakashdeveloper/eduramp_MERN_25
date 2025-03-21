@@ -24,3 +24,30 @@
 
 * Restaurants WRT Mealtype + Cost (GET)
 * Sort on basis of Price (GET)
+
+
+#
+* Place Order (POST)
+> http://localhost:9200/placeOrder
+{
+        "orderId":2,
+        "name": "Anchal",
+        "email": "anchal@gmail.com",
+        "address": "Hno 23,Sector 1",
+        "phone": 768768686,
+        "cost": 124,
+        "menuItem": [
+            6,
+            34,
+            23
+        ],
+        "status": "Pending",
+        "deleteStatus":0
+    }
+
+* Update Order (PUT)
+> http://localhost:9200/updateOrder
+{
+    "_id":"67dcec93e6319d5c26ca23c6",
+    "status":"Delivered"
+}

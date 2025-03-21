@@ -5,24 +5,30 @@ import cors from 'cors'
 const app = express();
 dotenv.config()
 const port = process.env.PORT || 8900
-import {dbConnect,getData} from './controller/dbController';
+import {dbConnect,getData,postData,
+    updateData,deleteData} from './controller/dbController';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json'
 
 //app.use(bodyParser.urlencoded({extended:true}))
 //app.use(bodyPArser.json())
 app.use(express.json())
 app.use(cors())
+app.use('/api-doc',swaggerUi.serve,swaggerUi.setup(swaggerDocument))
 
 const VALID_USERNAME = process.env.BASIC_AUTH_USER
 const VALID_PASSWORD = process.env.BASIC_AUTH_PASSWORD
 
 const basicAuth = (req,res,next) => {
-    const authHeader = req.headers.authorization;
+    const authHeader = req.headers['authorization'];
+    console.log(req)
     if(!authHeader || !authHeader.startsWith("Basic ")){
         return res.status(401).send("Unauthorized")
     }
     //decode base 64 header
     const base64Credentials = authHeader.split(" ")[1];
     const credentials = Buffer.from(base64Credentials,'base64').toString("utf-8");
+    console.log(credentials)
     const [username,password] = credentials.split(':')
 
     if(username === VALID_USERNAME && password === VALID_PASSWORD){
@@ -115,11 +121,63 @@ app.get('/details/:id',async(req,res) => {
     res.status(200).send(output)
 })
 
+//get Order
+app.get('/orders',async(req,res) => {
+    let collection = 'orders';
+    let output = await getData(collection,{"deleteStatus":0})
+    console.log()
+    res.status(200).send(output)
+})
+
+
 //placeOrder
 app.post('/placeOrder',async(req,res) => {
     let data = req.body;
-    console.log(data)
-    res.send('ok')
+    console.log(data);
+    let collection = 'orders';
+    let output = await postData(collection,data)
+    res.status(200).send(`Order Place ${output}`)
+})
+
+//updateOrder
+app.put('/updateOrder',async(req,res) => {
+    let collection = "orders";
+    let condition = {_id:new ObjectId(req.body._id)};
+    let data = {
+        $set:{
+            "status":req.body.status
+        }
+    }
+    await updateData(collection,condition,data)
+    res.status(200).send(`Order Updated `)
+})
+
+
+//deleteOrder
+app.put('/deleteOrder',async(req,res) => {
+    let collection = "orders";
+    let condition = {_id:new ObjectId(req.body._id)};
+    let rows = await getData(collection,condition)
+    if(rows.length > 0){
+        await deleteData(collection,condition)
+        res.status(200).send(`Order deleted `)
+    }else{
+        res.status(200).send(`No Order Found `)
+    }
+})
+
+
+//  {"id":[1,2,5]}
+app.post('/menuDetails',async(req,res) => {
+    if(Array.isArray(req.body.id)){
+        let query = {menu_id:{$in:req.body.id}}
+        let collection = 'menu';
+        let output = await getData(collection,query)
+        res.status(200).send(output)
+    }else{
+        res.send('Please Pass data in format of {"id":[1,2,5]}')
+    }
+
 })
 
 

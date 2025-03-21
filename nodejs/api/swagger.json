@@ -1,0 +1,65 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+        "description":"This is the api for users"
+    },
+    "tags":[
+        {
+            "name":"PUBLIC ROUTE",
+            "description":"Public Route"
+        }
+    ],
+    "paths":{
+        "/":{
+            "summary":"Testing health Check",
+            "get":{
+                "description":"User Health Check",
+                "tags":["PUBLIC ROUTE"],
+                "responses":{
+                    "200":{
+                        "description":"User Health Pass"
+                    }
+                }
+            }
+        },
+        "/location":{
+            "summary":"Testing Location Check Route",
+            "get":{
+                "description":"User Location Check",
+                "tags":["PUBLIC ROUTE"],
+                "parameters":[
+                    {
+                        "name":"authorization",
+                        "in":"header"
+                      
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"User Health Pass"
+                    }
+                }
+            }
+        },
+        "/details":{
+            "summary":"Testing location Check Route",
+            "get":{
+                "description":"Use location Check",
+                "tags":["PUBLIC ROUTE"],
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in":"path",
+                        "required":true
+                    }
+                   
+                ],
+                "responses":{
+                    "200":{
+                        "description":"User location Pass"
+                    }
+                }
+            }
+        }
+    }
+}

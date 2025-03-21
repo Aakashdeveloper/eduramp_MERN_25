@@ -182,3 +182,41 @@ queryParams
     // let stateId = Number(req.query.stateId)
     // let abc = Number(req.query.abc)\
 ..
+
+db.orders.updateOne(
+    {orderId:1},
+    {
+        $set:{
+            "menuItem[0]":"On The Way",
+            discount:"10%"
+        }
+    }
+)
+
+db.orders.updateOne(
+    {orderId:1},
+    {
+        $unset:{
+            discount:1
+        }
+    }
+)
+
+// delete all records
+db.orders.remove({})
+
+// delete on the basis of condition
+db.orders.remove({orderId:1})
+
+//softdelete
+db.orders.updateOne(
+    {orderId:1},
+    {
+        $set:{
+            deleteStatus:1
+        }
+    }
+)
+
+
+npm i swagger-jsdoc swagger-ui-express
