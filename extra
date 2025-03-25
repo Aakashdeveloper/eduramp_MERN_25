@@ -229,3 +229,48 @@ pm2 start app.js
 pm2 status
 
 pm2 stop app.js
+
+//////Step to generate react app////
+* Nodejs Must be installed
+
+# install global package
+> npm i -g create-react-app 
+> go inside folder where you want app
+> creat-react-app appName
+
+
+> npx creat-react-app appName
+
+> npm create vite@latest
+> select react
+> select Javascript
+
+classComponent
+> Logical Component
+
+Functional
+> Dumb Component
+
+Hooks
+useState 
+useEffect
+
+function add(a,b){
+    let out = [a,b]
+    return out
+}
+
+add(1,2)
+2
+
+state
+> Act like a local variable
+> every component can have its own state
+> when state update happen component will re-render
+
+props
+> Help to share data between component
+> we do not change any value in props
+> from 
+    parent > child  (props)
+    child > parent (props with callback)
