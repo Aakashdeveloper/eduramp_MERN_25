@@ -3,6 +3,20 @@
     "info":{
         "description":"This is the api for users"
     },
+    "components":{
+        "securitySchemes":{
+            "BasicAuth":{
+                "type":"http",
+                "scheme":"basic"
+            }
+        }
+    },
+    "security":
+    [
+        {
+            "BasicAuth":[]
+        }
+    ],
     "tags":[
         {
             "name":"PUBLIC ROUTE",
@@ -27,13 +41,6 @@
             "get":{
                 "description":"User Location Check",
                 "tags":["PUBLIC ROUTE"],
-                "parameters":[
-                    {
-                        "name":"authorization",
-                        "in":"header"
-                      
-                    }
-                ],
                 "responses":{
                     "200":{
                         "description":"User Health Pass"
@@ -41,7 +48,7 @@
                 }
             }
         },
-        "/details":{
+        "/details/{id}":{
             "summary":"Testing location Check Route",
             "get":{
                 "description":"Use location Check",
