@@ -21,7 +21,7 @@ const VALID_PASSWORD = process.env.BASIC_AUTH_PASSWORD
 
 const basicAuth = (req,res,next) => {
     const authHeader = req.headers['authorization'];
-    console.log(req)
+    //console.log(req)
     if(!authHeader || !authHeader.startsWith("Basic ")){
         return res.status(401).send("Unauthorized")
     }
