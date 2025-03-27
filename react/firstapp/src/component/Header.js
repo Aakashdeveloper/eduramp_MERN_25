@@ -1,9 +1,13 @@
 import './Header.css';
+import {Link} from 'react-router-dom';
 const Header = () => {
     return(
         <header>
             <div id="brand">
                 Developer Funnel
+                &nbsp; <Link to="/" className="btn btn-success">
+                    Home
+                </Link>
         
             </div>  
             <div id="social">

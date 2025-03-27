@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Main from './Main';
 import Home from './Home/Home';
 import Listing from './Listing/listing';
+import Details from './details/details';
 
 const Routing = () => {
     return(
@@ -15,6 +16,7 @@ const Routing = () => {
             <Route path="/" element={<Main/>}>
                 <Route index element={<Home/>}/>
                 <Route path="/listing/:mealId" element={<Listing/>}/>
+                <Route path="/details" element={<Details/>}/>
             </Route>
         </Routes>
         <Footer/>
