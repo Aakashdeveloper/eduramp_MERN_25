@@ -13,6 +13,7 @@ const Listing = () => {
     let [restaurant,setRestaurants] = useState()
 
     useEffect(() => {
+        sessionStorage.setItem('mealId',mealId)
         axios.get(`${baseUrl}/restaurant?mealtype_id=${mealId}`, {method:'GET'})
         .then((res) => setRestaurants(res.data))
         .catch((err) => {console.log(err)})
