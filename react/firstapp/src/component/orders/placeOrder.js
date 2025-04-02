@@ -1,14 +1,17 @@
 import {useState,useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 
+const postUrl = process.env.REACT_APP_POST_URL
 const PlaceOrder = () => {
 
     let {restName} = useParams()
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         id:Math.floor(Math.random()*1000),
         name:"Rohit",
         phone:987654342,
-        address:""
+        address:"Hno 29 Delhi",
+        email:"a@a.com"
     })
 
     const [errors, setErrors] = useState({phone:""})
@@ -25,6 +28,24 @@ const PlaceOrder = () => {
             const errorMsg = validatePhone(value);
             setErrors({...errors,phone:errorMsg})
         }
+    }
+
+    const submitOrder = () => {
+        const orderData = {
+            ...formData,
+            restName:restName
+        }
+
+        fetch(postUrl,{
+            method:'POST',
+            headers:{
+                'accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(orderData)
+        }).then(() => navigate('/viewOrder'))
+
+
     }
     return(
         <>
@@ -61,7 +82,15 @@ const PlaceOrder = () => {
                             onChange={handleChange}
                             />
                         </div>
-                        <button className="btn btn-success" onClick={placeOrder}>
+                        <div className="col-md-6 form-group">
+                            <label>Email</label>
+                            <input className="form-control"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            />
+                        </div>
+                        <button className="btn btn-success" onClick={submitOrder}>
                             Checkout
                         </button>
                     </div>

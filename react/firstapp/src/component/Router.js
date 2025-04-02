@@ -6,6 +6,7 @@ import Home from './Home/Home';
 import Listing from './Listing/listing';
 import Details from './details/details';
 import PlaceOrder from './orders/placeOrder';
+import ViewOrder from './orders/viewOrder';
 
 const Routing = () => {
     return(
@@ -19,6 +20,7 @@ const Routing = () => {
                 <Route path="/listing/:mealId" element={<Listing/>}/>
                 <Route path="/details" element={<Details/>}/>
                 <Route path="/placeOrder/:restName" element={<PlaceOrder/>}/>
+                <Route path="/viewOrder" element={<ViewOrder/>}/>
             </Route>
         </Routes>
         <Footer/>
