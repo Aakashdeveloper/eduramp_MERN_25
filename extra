@@ -316,3 +316,7 @@ json-server --watch data.json --port 9888
 
 # UserInfo (GET) => http://3.17.216.66:5000/api/auth/userinfo
 * (Header) => {'x-access-token':'token value from login'}
+
+
+^Mac
+mongod --config /usr/local/etc/mongod.conf --fork

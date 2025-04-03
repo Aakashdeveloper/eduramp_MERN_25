@@ -1,11 +1,13 @@
 import {useState,useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
+import useLogout from './useLogout'
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
 const Profile = () => {
     const navigate = useNavigate();
     const [user,setUser] = useState();
+    const logout = useLogout()
 
     const userData = async() => {
         const response = await fetch(`${baseUrl}/userinfo`,{
@@ -37,10 +39,16 @@ const Profile = () => {
         userData()
     },[])
 
-    const handleLogout = () => {
-        sessionStorage.removeItem('ltk')
-        sessionStorage.removeItem('rtk')
-        navigate('/')
+    const conditionalRender = (data) => {
+        if(data){
+            if(data?.role?.toLowerCase() === "admin"){
+                return(
+                    <Link to="/userList" className='btn btn-success'>
+                        Users
+                    </Link>
+                )
+            }
+        }
     }
 
     if(sessionStorage.getItem('ltk') === null){
@@ -55,8 +63,9 @@ const Profile = () => {
                     </div>
                     <div className='panel-body'>
                         {renderUser(user)}
+                        {conditionalRender(user)} &nbsp;
                         <button className='btn btn-danger'
-                        onClick={handleLogout}>
+                        onClick={logout}>
                             Logout
                         </button>
                     </div>

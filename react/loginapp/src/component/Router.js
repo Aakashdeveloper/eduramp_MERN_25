@@ -5,6 +5,7 @@ import Main from './Main';
 import Register from './Register';
 import Login from './Login';
 import Profile from './Profile';
+import UserList from './UserList'
 
 const Routing = () => {
     return(
@@ -17,6 +18,7 @@ const Routing = () => {
                 <Route index element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/profile" element={<Profile/>}/>
+                <Route path="/userList" element={<UserList/>}/>
             </Route>
         </Routes>
         <Footer/>
